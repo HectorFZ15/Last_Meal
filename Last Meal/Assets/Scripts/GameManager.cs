@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public int seconds = 0;
     public bool isPaused = false;
     public bool isGameOver = false;
+    public int score = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
