@@ -9,12 +9,21 @@ public class NpcMovement : MonoBehaviour
 
     public GameManager gameManager;
 
+
     // Update is called once per frame
     void Update()
     {
         if (gameManager.isGameOver == false)
         {
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+        }
+        if (gameManager.isPartnerActive && tag == "Villager")
+        {
+            GetComponent<SpriteRenderer>().sprite = gameManager.spritePartner;
+        }
+        else if (tag == "Villager")
+        {
+            GetComponent<SpriteRenderer>().sprite = gameManager.spriteDefault;
         }
     }
 }

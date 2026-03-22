@@ -29,6 +29,10 @@ public class GameManager : MonoBehaviour
     public bool isPartnerActive = false;
     public PlayerController playerController;
 
+    //Sprite pa cambiar
+    public Sprite spriteDefault;
+    public Sprite spritePartner;
+
 
     public Slider healthBar;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
