@@ -10,6 +10,10 @@ public class NpcMovement : MonoBehaviour
 
     public GameManager gameManager;
 
+    public float stopDuration = 0.5f;
+    private float stopTimer = 0f;
+    public bool isStopped = false;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -19,7 +23,7 @@ public class NpcMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameManager.isGameOver == false)
+        if (gameManager.isGameOver == false && isStopped == false)
         {
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
         }
@@ -31,14 +35,24 @@ public class NpcMovement : MonoBehaviour
         {
             GetComponent<SpriteRenderer>().sprite = gameManager.spriteDefault;
         }
-    }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
+        if (isStopped)
         {
-            animator.SetBool("VillagerStop", true);
-            animator.SetBool("ThiefStop", true);
+            if (villager)
+            {
+                animator.SetBool("VillagerStop", true);
+            }
+            else
+            {
+                animator.SetBool("ThiefStop", true);
+            }
+            stopTimer += Time.deltaTime;
+            if (stopTimer >= stopDuration)
+            {
+                isStopped = false;
+                stopTimer = 0f;
+                Destroy(gameObject);
+            }
         }
     }
 }

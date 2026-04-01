@@ -237,6 +237,7 @@ MonoBehaviour:
   triggerCollider: {fileID: 0}
   targetPosition: {x: 0, y: 0, z: 0}
   speed: 2
+  stopDuration: 0.8
 --- !u!1 &115528398
 GameObject:
   m_ObjectHideFlags: 0
@@ -3157,8 +3158,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 622286709}
-  - {fileID: 1054373260}
   - {fileID: 247331690}
+  - {fileID: 1054373260}
   - {fileID: 272794214}
   - {fileID: 1148078477}
   - {fileID: 1612051396}
