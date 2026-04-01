@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public Animator animator;
     public GameManager gameManager;
     public GameObject[] positions;
 
@@ -15,10 +16,15 @@ public class PlayerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        animator = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
         triggerCollider = GetComponent<BoxCollider2D>();
         triggerCollider.isTrigger = false;
         triggerCollider.size = triggerSize;
+        animator.SetBool("EvilLose", false);
+        animator.SetBool("GodLose", false);
+        animator.SetBool("EvilStop", false);
+        animator.SetBool("GodStop", false);
     }
 
     void Update()
@@ -94,11 +100,14 @@ public class PlayerController : MonoBehaviour
             else
             {
                 gameManager.ScorePointsPlayer(collision);
+                animator.SetBool("GodStop", true);
+
             }
         }
-        else
+        else if(collision.gameObject.CompareTag("Thief") || collision.gameObject.CompareTag("Villager"))
         {
             gameManager.ScorePointsPlayer(collision);
+            animator.SetBool("GodStop", true);
         }
     }
 

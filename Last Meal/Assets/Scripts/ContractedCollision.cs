@@ -3,6 +3,7 @@ using UnityEngine.UIElements;
 
 public class ContractedCollision : MonoBehaviour
 {
+    private Animator animator;
     public GameManager gameManager;
     public Vector2 triggerSize = new Vector2(5f, 5f);
     private BoxCollider2D boxCollider;
@@ -14,6 +15,7 @@ public class ContractedCollision : MonoBehaviour
     {
         boxCollider = GetComponent<BoxCollider2D>();
         triggerCollider = GetComponent<BoxCollider2D>();
+        animator = GetComponent<Animator>();
         triggerCollider.isTrigger = false;
         triggerCollider.size = triggerSize;
     }
@@ -22,7 +24,12 @@ public class ContractedCollision : MonoBehaviour
     {
        if (targetPosition != null)
         {
+            animator.SetBool("isMoving", true);
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+        }
+        else
+        {
+            animator.SetBool("isMoving", false);
         }
     }
 
@@ -36,6 +43,7 @@ public class ContractedCollision : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        animator.SetBool("ContractedStop", true);
         if (other.gameObject.CompareTag("Thief"))
         {
             triggerCollider.isTrigger = false;        

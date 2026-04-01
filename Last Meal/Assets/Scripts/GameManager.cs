@@ -179,6 +179,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         isGameOver = true;
+        playerController.animator.SetBool("GodLose", true);
         gameOverPanel.SetActive(true);
         scoreText.gameObject.SetActive(false);
         gameOverText.text = "Game Over!\n\nScore: " + score + "\nTime: " + minuts + ":" + seconds + "\nFinal Score: " + score * (int)Math.Round(time) / 2 + "\nVillager Enter: " + countVillagersEnter + "\nThief Enter: " + countThievesEnter + "\nVillager Block: " + countVillagersBlock + "\nThief Block: " + countThievesBlock;
