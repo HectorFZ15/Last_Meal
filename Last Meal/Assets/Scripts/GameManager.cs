@@ -182,7 +182,8 @@ public class GameManager : MonoBehaviour
         healthBar.value -= 0.2f;
         if (healthBar.value <= 0)
         {
-            GameOver();
+            isGameOver = true;
+            playerController.Derrota();
         }
     }
 
@@ -209,12 +210,14 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        isGameOver = true;
+        //Quiero que si no se ha temrinado la animacion de muerte del jugador no mostrarlo.
         gameOverPanel.SetActive(true);
         scoreText.gameObject.SetActive(false);
         contractedPanel.SetActive(false);
         partnerPanel2.SetActive(false);
         contractedPanelText.gameObject.SetActive(false);
+        contractedHabText.SetActive(false);
+        partnerHabText.SetActive(false);
         gameOverText.text = "Game Over!\n\nScore: " + score + "\nTime: " + minuts + ":" + seconds + "\nFinal Score: " + score * (int)Math.Round(time) / 2 + "\nVillager Enter: " + countVillagersEnter + "\nThief Enter: " + countThievesEnter + "\nVillager Block: " + countVillagersBlock + "\nThief Block: " + countThievesBlock;
         score = score * (int)Math.Round(time) / 2;
         Debug.Log("Game Over!");
