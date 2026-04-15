@@ -3046,6 +3046,8 @@ MonoBehaviour:
   gameManager: {fileID: 856283227}
   spawnInterval: 5
   spTerval: 5
+  speedPlus: 2
+  intervalPlus: 90
 --- !u!4 &1456874923
 Transform:
   m_ObjectHideFlags: 0
