@@ -14,7 +14,13 @@ public class PlayerController : MonoBehaviour
     public float speed = 2f;
 
     public float stopDuration = 0.5f;
+    public float stopDuration2 = 2f;
+
     private float stopTimer = 0f;
+    private float loseTime = 0f;
+    private bool losingAnim = false;
+    private bool endGame = false;
+
     private bool isStopped = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -54,6 +60,21 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("GodStop", false);
             }  
         } 
+
+        if (losingAnim)
+        {
+            loseTime += Time.deltaTime;
+            if (loseTime >= stopDuration2)
+            {
+                loseTime = 0f;
+                losingAnim = false;
+                if (!endGame)
+                {
+                    endGame = true;
+                    gameManager.GameOver();
+                }
+            }
+        }
     }
 
     // Update is called once per frame
@@ -102,6 +123,17 @@ public class PlayerController : MonoBehaviour
                 //Debug.Log("D pressed");
             }
         }       
+    }
+
+    public void Derrota()
+    {
+        if (!losingAnim)
+        {
+            losingAnim = true;
+            loseTime = 0f;
+            animator.SetBool("GodLose", true);
+        }
+        //gameManager.GameOver();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
