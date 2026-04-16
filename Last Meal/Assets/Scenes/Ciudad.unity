@@ -2151,6 +2151,7 @@ MonoBehaviour:
   spriteDefault: {fileID: 21300000, guid: 5b08961617caca34692e9664e13134a6, type: 3}
   spritePartner: {fileID: 21300000, guid: c77e6cd05e72b5042965a728216c9f63, type: 3}
   healthBar: {fileID: 622286710}
+  mood: 0
 --- !u!4 &856283228
 Transform:
   m_ObjectHideFlags: 0
