@@ -3,6 +3,11 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
+using System.IO;
+using System.Collections.Generic;
+using System.Linq;
+
+
 
 public class GameManager : MonoBehaviour
 {
@@ -42,6 +47,66 @@ public class GameManager : MonoBehaviour
 
 
     public Slider healthBar;
+    //Points World
+    private List<ScoreData> allScores = new List<ScoreData>();
+    public bool mood = false; //false = GOD, True = devil
+
+
+    void Awake()
+    {
+        string path = Application.persistentDataPath;
+        string[] files = Directory.GetFiles(path, "dataGame_*.json");
+
+        if (files.Length == 0)
+        {
+            Debug.LogWarning("No se encontraron archivos de telemetría.");
+            return;
+        }
+
+        foreach (string file in files)
+        {
+            try
+            {
+                string json = File.ReadAllText(file);
+                ScoreData data = JsonUtility.FromJson<ScoreData>(json);
+                if (data != null)
+                    allScores.Add(data);
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError($"Error al leer {file}: {e.Message}");
+            }
+        }
+
+        allScores = allScores.OrderByDescending(s => s.score).ToList();
+
+        int countPoint = 0;
+        for (int i = allScores.Count -1; i >= 0; i--)
+        {
+            if (allScores[i].score >= 0)
+            {
+                countPoint++;
+                Debug.Log("Ha sumado");
+            }
+            else
+            {
+                countPoint--;
+                Debug.Log("Ha restado");
+            }
+        }
+
+        if (countPoint >= 0)
+        {
+            mood = false;
+        }
+        else
+        {
+            mood = true;
+        }
+        Debug.Log("Mood: " + mood + " CountPoint: " + countPoint);
+
+    }
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

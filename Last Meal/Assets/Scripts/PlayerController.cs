@@ -58,6 +58,7 @@ public class PlayerController : MonoBehaviour
                 stopTimer = 0f;
                 isStopped = false;
                 animator.SetBool("GodStop", false);
+                animator.SetBool("EvilStop", false);
             }  
         } 
 
@@ -131,7 +132,14 @@ public class PlayerController : MonoBehaviour
         {
             losingAnim = true;
             loseTime = 0f;
-            animator.SetBool("GodLose", true);
+            if (gameManager.mood)
+            {
+                animator.SetBool("EvilLose", true);
+            }
+            else
+            {
+                animator.SetBool("GodLose", true);
+            }
         }
         //gameManager.GameOver();
     }
@@ -147,7 +155,14 @@ public class PlayerController : MonoBehaviour
             else
             {
                 gameManager.ScorePointsPlayer(collision);
-                animator.SetBool("GodStop", true);
+                if (gameManager.mood)
+                {
+                    animator.SetBool("EvilStop", true);
+                }
+                else
+                {
+                    animator.SetBool("GodStop", true);
+                }
                 isStopped = true;
 
             }
@@ -155,7 +170,14 @@ public class PlayerController : MonoBehaviour
         else if(collision.gameObject.CompareTag("Thief") || collision.gameObject.CompareTag("Villager"))
         {
             gameManager.ScorePointsPlayer(collision);
-            animator.SetBool("GodStop", true);
+            if (gameManager.mood)
+                {
+                    animator.SetBool("EvilStop", true);
+                }
+                else
+                {
+                    animator.SetBool("GodStop", true);
+                }
             isStopped = true;
         }
     }
