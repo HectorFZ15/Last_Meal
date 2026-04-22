@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.InputSystem;
 
 
 
@@ -50,6 +51,10 @@ public class GameManager : MonoBehaviour
     //Points World
     private List<ScoreData> allScores = new List<ScoreData>();
     public static bool mood = false; //false = GOD, True = devil
+
+    //Mando pausa
+    public PlayerInput pauseAction;
+    private InputAction pauseInputAction;
 
 
     void Awake()
@@ -104,6 +109,8 @@ public class GameManager : MonoBehaviour
             mood = true;
         }
         Debug.Log("Mood: " + mood + " CountPoint: " + countPoint);
+
+        pauseInputAction = pauseAction.actions["Pause"];
 
     }
     
@@ -168,11 +175,11 @@ public class GameManager : MonoBehaviour
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.Escape) && !isPaused)
+            if (Input.GetKeyDown(KeyCode.Escape) || pauseInputAction.triggered && !isPaused)
             {
                 Pause();
                 isPaused = true;
-            }else if (Input.GetKeyDown(KeyCode.Escape) && isPaused)
+            }else if (Input.GetKeyDown(KeyCode.Escape) || pauseInputAction.triggered && isPaused)
             {
                 isPaused = false;
                 Continue();

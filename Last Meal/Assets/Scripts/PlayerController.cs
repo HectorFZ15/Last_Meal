@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -23,6 +24,20 @@ public class PlayerController : MonoBehaviour
 
     private bool isStopped = false;
 
+    //Mando
+    private PlayerInput controls;
+    private InputAction moveAction;
+    private Vector2 moveInput;
+    private InputAction contractAction;
+    private InputAction partnerAction;
+    void Awake()
+    {
+        controls = GetComponent<PlayerInput>();
+        moveAction = controls.actions["Move"];
+        contractAction = controls.actions["Contracted"];
+        partnerAction = controls.actions["Partner"];          
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -39,43 +54,46 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (!endGame)
         {
-            gameManager.ContracetHability();
-        }
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            gameManager.PartnerHability();
-        }
-
-        
-        if (isStopped)
-        {
-            stopTimer += Time.deltaTime;
-            if (stopTimer >= stopDuration)
+           if (Input.GetKeyDown(KeyCode.Q) || contractAction.triggered)
             {
-                stopTimer = 0f;
-                isStopped = false;
-                animator.SetBool("GodStop", false);
-                animator.SetBool("EvilStop", false);
-            }  
-        } 
-
-        if (losingAnim)
-        {
-            loseTime += Time.deltaTime;
-            if (loseTime >= stopDuration2)
-            {
-                loseTime = 0f;
-                losingAnim = false;
-                if (!endGame)
-                {
-                    endGame = true;
-                    gameManager.GameOver();
-                }
+                gameManager.ContracetHability();
             }
+
+            if (Input.GetKeyDown(KeyCode.E) || partnerAction.triggered)
+            {
+                gameManager.PartnerHability();
+            }
+            
+            if (isStopped)
+            {
+                stopTimer += Time.deltaTime;
+                if (stopTimer >= stopDuration)
+                {
+                    stopTimer = 0f;
+                    isStopped = false;
+                    animator.SetBool("GodStop", false);
+                    animator.SetBool("EvilStop", false);
+                }  
+            } 
+
+            if (losingAnim)
+            {
+                loseTime += Time.deltaTime;
+                if (loseTime >= stopDuration2)
+                {
+                    loseTime = 0f;
+                    losingAnim = false;
+                    if (!endGame)
+                    {
+                        endGame = true;
+                        gameManager.GameOver();
+                    }
+                }
+            } 
         }
+        
     }
 
     // Update is called once per frame
@@ -84,6 +102,7 @@ public class PlayerController : MonoBehaviour
         //Opción 1
         if(gameManager.isGameOver == false)
         {
+            //Falta movimiento de Joystick Aqui :D
              if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
             {
                 transform.position = positions[4].transform.position;
