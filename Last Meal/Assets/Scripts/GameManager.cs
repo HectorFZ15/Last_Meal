@@ -57,8 +57,9 @@ public class GameManager : MonoBehaviour
     public PlayerInput pauseAction;
     private InputAction pauseInputAction;
 
-    //Boton pausa
+    //Botones
     public GameObject butonLocal;
+    public GameObject butonFinal;
 
     void Awake()
     {
@@ -298,6 +299,7 @@ public class GameManager : MonoBehaviour
         gameOverText.text = "Game Over!\n\nScore: " + score + "\nTime: " + minuts + ":" + seconds + "\nVillager Enter: " + countVillagersEnter + "\nThief Enter: " + countThievesEnter + "\nVillager Block: " + countVillagersBlock + "\nThief Block: " + countThievesBlock + "\nFinal Score: " + score2;
         score = score2;
         Debug.Log("Game Over!");
+        EventSystem.current.SetSelectedGameObject(butonFinal);
         SaveScore();
     }
 
