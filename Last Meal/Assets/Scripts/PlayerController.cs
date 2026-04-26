@@ -105,42 +105,59 @@ public class PlayerController : MonoBehaviour
             Vector2 stick = moveAction.ReadValue<Vector2>();
             float ejeX = stick.x;
             float ejeY = stick.y;
-            //Falta movimiento de Joystick Aqui :D
-             if ((Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A)) || (ejeX < -0.5f && ejeY > 0.5f))
+
+            //Prueba mejora Zona muerta Mando
+            float deadZo = 0.23f;
+            float diagonales = 0.77f;
+
+            float diagX = Mathf.Abs(ejeX);
+            float diagY = Mathf.Abs(ejeY);
+
+            bool isUp = ejeY > deadZo;
+            bool isDown = ejeY < -deadZo;
+            bool isLeft = ejeX < -deadZo;
+            bool isRight = ejeX > deadZo;
+
+            bool isDiagUpRight = isUp && isRight && Mathf.Abs(diagX - diagY) < diagonales;
+            bool isDiagUpLeft = isUp && isLeft && Mathf.Abs(diagX - diagY) < diagonales;
+            bool isDiagDownRight = isDown && isRight && Mathf.Abs(diagX - diagY) < diagonales;
+            bool isDiagDownLeft = isDown && isLeft && Mathf.Abs(diagX - diagY) < diagonales;
+
+             if ((Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A)) || isDiagUpLeft)
             {
                 transform.position = positions[4].transform.position;
                 //Debug.Log("W and A pressed");
             }
-            else if ((Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D)) || (ejeX > 0.5f && ejeY > 0.5f))
+            else if ((Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D)) || isDiagUpRight)
             {
                 transform.position = positions[5].transform.position;
                 //Debug.Log("W and D pressed");
             }
-            else if ((Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A)) || (ejeX < -0.5f && ejeY < -0.5f))
+            else if ((Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A)) || isDiagDownLeft)
             {
                 transform.position = positions[6].transform.position;
                 //Debug.Log("S and A pressed");
             }
-            else if ((Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D)) || (ejeX > 0.5f && ejeY < -0.5f))
+            else if ((Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D)) || isDiagDownRight)
             {
                 transform.position = positions[7].transform.position;
                 //Debug.Log("S and D pressed");
-            }else if (Input.GetKey(KeyCode.W) || ejeY > 0.5f)
+            }else if (Input.GetKey(KeyCode.W) || isUp)
             {
                 transform.position = positions[0].transform.position;
                 //Debug.Log("W pressed");
             }
-            else if (Input.GetKey(KeyCode.S) || ejeY < -0.5f)
+            else if (Input.GetKey(KeyCode.S) || isDown)
             {
                 transform.position = positions[1].transform.position;
                 //Debug.Log("S pressed");
             }
-            else if (Input.GetKey(KeyCode.A) || ejeX < -0.5f)
+            else if (Input.GetKey(KeyCode.A) || isLeft)
             {
                 transform.position = positions[2].transform.position;
                 //Debug.Log("A pressed");
             }
-            else if (Input.GetKey(KeyCode.D) || ejeX > 0.5f)
+            else if (Input.GetKey(KeyCode.D) || isRight)
             {
                 transform.position = positions[3].transform.position;
                 //Debug.Log("D pressed");
