@@ -61,6 +61,8 @@ public class GameManager : MonoBehaviour
     public GameObject butonLocal;
     public GameObject butonFinal;
 
+    public bool isConfig = false;
+
     void Awake()
     {
         string path = Application.persistentDataPath;

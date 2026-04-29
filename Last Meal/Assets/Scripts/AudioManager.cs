@@ -24,10 +24,12 @@ public class AudioManager : MonoBehaviour
     public GameObject canvaMusic;
     public GameObject canvasScene;
     public GameObject configButton;
+    public GameObject controlsCanvas;
 
     //Button nav
     public GameObject exitButton;
     public GameObject butonLocal;
+    public GameObject controlExistButton;
     private void Awake()
     {
         if (instance == null)
@@ -43,6 +45,7 @@ public class AudioManager : MonoBehaviour
         canvasScene = GameObject.Find("Canvas");
         configButton = GameObject.Find("ConfigButton");
         butonLocal = GameObject.Find("Play");
+        controlExistButton = GameObject.Find("ExitControls");
 
         configButton.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(MusicMenu);
 
@@ -53,6 +56,7 @@ public class AudioManager : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
         CambiarMusica(SceneManager.GetActiveScene().name);
         canvaMusic.SetActive(false);
+        controlsCanvas.SetActive(false);
     }
 
     private void Update()
@@ -74,6 +78,20 @@ public class AudioManager : MonoBehaviour
         else
         {
             EventSystem.current.SetSelectedGameObject(exitButton);
+        }
+    }
+
+    public void ControlsMenu()
+    {
+        controlsCanvas.SetActive(!controlsCanvas.activeSelf);
+        canvaMusic.SetActive(!canvaMusic.activeSelf);
+        if (!controlsCanvas.activeSelf)
+        {
+            EventSystem.current.SetSelectedGameObject(exitButton);
+        }
+        else
+        {
+            EventSystem.current.SetSelectedGameObject(controlExistButton);
         }
     }
 
