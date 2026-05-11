@@ -12,6 +12,7 @@ public class ScoreData
     public int countThievesEnter;
     public int countVillagersBlock;
     public int countThievesBlock;
+    public bool isGod;
 }
 
 public class ScoreManage : MonoBehaviour
@@ -29,6 +30,7 @@ public class ScoreManage : MonoBehaviour
         data.countThievesEnter = manager.countThievesEnter;
         data.countVillagersBlock = manager.countVillagersBlock;
         data.countThievesBlock = manager.countThievesBlock;
+        data.isGod = GameManager.mood;
 
         string json = JsonUtility.ToJson(data, true);
         Debug.Log("Datos de telemetría en JSON: " + json);
