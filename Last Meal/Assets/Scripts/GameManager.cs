@@ -74,6 +74,8 @@ public class GameManager : MonoBehaviour
         if (files.Length == 0)
         {
             Debug.LogWarning("No se encontraron archivos de telemetría.");
+            pauseInputAction = pauseAction.actions["Pause"];
+            audioManager = GameObject.Find("MusicManager").GetComponent<AudioManager>();
             return;
         }
 

@@ -83,13 +83,28 @@ public class LoadScore : MonoBehaviour
         }
         else
         {
-            upPanelText.text = $"{ "#"} { "Score",8} { "Time",6} { "VE",4} { "TE",4} { "VB",4} { "TB",4}\n";
+            upPanelText.text = $"{ "#"} { "Score",8} { "Time",6} { "VE",4} { "TE",4} { "VB",4} { "TB",4} {"God", 4}\n";
         }
 
 
         for (int i = 0; i < count; i++)
         {
-            upRankingText.text += $"{i + 1}. {allScores[i].score,8} {($"{allScores[i].minutes}:{allScores[i].seconds:00}"),6} {allScores[i].countVillagersEnter,4} {allScores[i].countThievesEnter,4} {allScores[i].countVillagersBlock,4} {allScores[i].countThievesBlock,4}\n";
+            if (allScores[i].isGod)
+            {
+                allScores[i].isGod = !allScores[i].isGod;
+            }
+            else
+            {
+                allScores[i].isGod = !allScores[i].isGod;
+            }
+            if (allScores[i].isGod)
+            {
+                upRankingText.text += $"{i + 1}. {allScores[i].score,8} {($"{allScores[i].minutes}:{allScores[i].seconds:00}"),6} {allScores[i].countVillagersEnter,4} {allScores[i].countThievesEnter,4} {allScores[i].countVillagersBlock,4} {allScores[i].countThievesBlock,4} {"Yes", 4}\n";
+            }
+            else
+            {
+                upRankingText.text += $"{i + 1}. {allScores[i].score,8} {($"{allScores[i].minutes}:{allScores[i].seconds:00}"),6} {allScores[i].countVillagersEnter,4} {allScores[i].countThievesEnter,4} {allScores[i].countVillagersBlock,4} {allScores[i].countThievesBlock,4} {"No", 4}\n";
+            }
         }
 
         Debug.Log($"Mostrando top {count} puntuaciones en HUD");
@@ -149,12 +164,19 @@ public class LoadScore : MonoBehaviour
             return;
         }else
         {
-            downPanelText.text = $"{ "#"} { "Score",8} { "Time",6} { "VE",4} { "TE",4} { "VB",4} { "TB",4}\n";
+            downPanelText.text = $"{ "#"} { "Score",8} { "Time",6} { "VE",4} { "TE",4} { "VB",4} { "TB",4} {"Devil", 4}\n";
         }
 
         for (int i = 0; i < count; i++)
         {
-            downRankingText.text += $"{i + 1}. {allScores[i].score,8} {($"{allScores[i].minutes}:{allScores[i].seconds:00}"),6} {allScores[i].countVillagersEnter,4} {allScores[i].countThievesEnter,4} {allScores[i].countVillagersBlock,4} {allScores[i].countThievesBlock,4}\n";
+            if (allScores[i].isGod)
+            {
+                downRankingText.text += $"{i + 1}. {allScores[i].score,8} {($"{allScores[i].minutes}:{allScores[i].seconds:00}"),6} {allScores[i].countVillagersEnter,4} {allScores[i].countThievesEnter,4} {allScores[i].countVillagersBlock,4} {allScores[i].countThievesBlock,4} {"Yes", 4}\n";
+            }
+            else
+            {
+                downRankingText.text += $"{i + 1}. {allScores[i].score,8} {($"{allScores[i].minutes}:{allScores[i].seconds:00}"),6} {allScores[i].countVillagersEnter,4} {allScores[i].countThievesEnter,4} {allScores[i].countVillagersBlock,4} {allScores[i].countThievesBlock,4} {"No", 4}\n";
+            }
         }
 
         Debug.Log($"Mostrando top {count} puntuaciones en HUD");
