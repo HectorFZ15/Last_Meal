@@ -33,6 +33,20 @@ public class AudioManager : MonoBehaviour
     public bool isConfig = false;
     public bool isMusic = false;
 
+    //Pa controlar cuando entra y sale de escena
+    public GameObject exitCityButton;
+    public GameObject continueCityButton;
+    public GameObject exitPauseCityButton;
+    public GameObject configPauseCityButton;
+    //pt2
+    public GameObject playButton;
+    public GameObject configButtonMenu;
+    public GameObject highScoreButton;
+    public GameObject downScoreButton;
+    public GameObject exitMenuButton;
+    public GameObject returnUrButton;
+    public GameObject returnDrButton;
+
     private void Awake()
     {
         if (instance == null)
@@ -44,7 +58,7 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
+        
         canvasScene = GameObject.Find("Canvas");
         configButton = GameObject.Find("ConfigButton");
         butonLocal = GameObject.Find("Play");
@@ -109,11 +123,40 @@ public class AudioManager : MonoBehaviour
         configButton = GameObject.Find("ConfigButton");
         butonLocal = GameObject.Find("Play");
 
+        if (scene.name == "MenuPrincipal")
+        {
+            playButton = GameObject.Find("Play");
+            configButtonMenu = GameObject.Find("ConfigButton");
+            highScoreButton = GameObject.Find("UpScore");
+            downScoreButton = GameObject.Find("DownScore");
+            exitMenuButton = GameObject.Find("Exit");
+            returnUrButton = GameObject.Find("ReturnUr");
+            returnDrButton = GameObject.Find("ReturnDr");
+
+            playButton.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => PlaySFX(click));
+            configButtonMenu.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => PlaySFX(click));
+            highScoreButton.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => PlaySFX(click));
+            downScoreButton.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => PlaySFX(click));
+            exitMenuButton.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => PlaySFX(click));
+            returnUrButton.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => PlaySFX(click));
+            returnDrButton.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => PlaySFX(click));   
+        }
+
         if (scene.name == "Ciudad")
         {
-          canvasScene.SetActive(false);  
+            //FALTA HACER LO MISMO PARA EL INICIO
+                exitCityButton = GameObject.Find("BackMenu");
+                continueCityButton = GameObject.Find("Continue");
+                exitPauseCityButton = GameObject.Find("Exit");
+                configPauseCityButton = GameObject.Find("ConfigButton");
+                exitCityButton.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => PlaySFX(click));
+                continueCityButton.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => PlaySFX(click));
+                exitPauseCityButton.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => PlaySFX(click));
+                configPauseCityButton.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => PlaySFX(click));
+            canvasScene.SetActive(false);  
         }
         configButton.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(MusicMenu);
+       
 
     }
 
