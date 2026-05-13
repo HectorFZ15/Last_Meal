@@ -85,12 +85,22 @@ public class SpawnerManager : MonoBehaviour
                         GameObject npc =Instantiate(prefabs[1], spawnPoints[i].transform.position, Quaternion.identity);
                         npc.GetComponent<NpcMovement>().gameManager = gameManager;
                         npc.GetComponent<NpcMovement>().speed = speedPlus;
+                        
+                        if (spawnPoints[i].transform.position.x > 0f)
+                        {
+                            npc.GetComponent<SpriteRenderer>().flipX = true;
+                        }
+                        
                     }
                     else if (prefabIndex == 1 || prefabIndex == 2 || prefabIndex == 3)
                     {
                         GameObject npc2 =Instantiate(prefabs[0], spawnPoints[i].transform.position, Quaternion.identity);
                         npc2.GetComponent<NpcMovement>().gameManager = gameManager;
                         npc2.GetComponent<NpcMovement>().speed = speedPlus;
+                        if (spawnPoints[i].transform.position.x < 0f)
+                        {
+                            npc2.GetComponent<SpriteRenderer>().flipX = true;
+                        }
                     }   
                 }
             }   

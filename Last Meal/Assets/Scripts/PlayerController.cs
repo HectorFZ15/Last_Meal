@@ -95,7 +95,7 @@ public class PlayerController : MonoBehaviour
                         gameManager.GameOver();
                     }
                 }
-            } 
+            }
         } 
     }
 
@@ -130,40 +130,72 @@ public class PlayerController : MonoBehaviour
              if ((Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A)) || isDiagUpLeft)
             {
                 currentPosition = positions[4].transform.position;
+                if (GameManager.mood)
+                {
+                    GetComponent<SpriteRenderer>().flipX = false; 
+                }
                 //Debug.Log("W and A pressed");
             }
             else if ((Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D)) || isDiagUpRight)
             {
                 currentPosition = positions[5].transform.position;
+                if (GameManager.mood)
+                {
+                    GetComponent<SpriteRenderer>().flipX = true; 
+                }
                 //Debug.Log("W and D pressed");
             }
             else if ((Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A)) || isDiagDownLeft)
             {
                 currentPosition = positions[6].transform.position;
+                if (GameManager.mood)
+                {
+                    GetComponent<SpriteRenderer>().flipX = false; 
+                }
                 //Debug.Log("S and A pressed");
             }
             else if ((Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D)) || isDiagDownRight)
             {
                 currentPosition = positions[7].transform.position;
+                if (GameManager.mood)
+                {
+                    GetComponent<SpriteRenderer>().flipX = true; 
+                }
                 //Debug.Log("S and D pressed");
             }else if (Input.GetKey(KeyCode.W) || isUp)
             {
                 currentPosition = positions[0].transform.position;
+                if (GameManager.mood)
+                {
+                    GetComponent<SpriteRenderer>().flipX = false; 
+                }
                 //Debug.Log("W pressed");
             }
             else if (Input.GetKey(KeyCode.S) || isDown)
             {
                 currentPosition = positions[1].transform.position;
+                if (GameManager.mood)
+                {
+                    GetComponent<SpriteRenderer>().flipX = false; 
+                }
                 //Debug.Log("S pressed");
             }
             else if (Input.GetKey(KeyCode.A) || isLeft)
             {
                 currentPosition = positions[2].transform.position;
+                if (GameManager.mood)
+                {
+                    GetComponent<SpriteRenderer>().flipX = false; 
+                }
                 //Debug.Log("A pressed");
             }
             else if (Input.GetKey(KeyCode.D) || isRight)
             {
                 currentPosition = positions[3].transform.position;
+                if (GameManager.mood)
+                {
+                    GetComponent<SpriteRenderer>().flipX = true; 
+                }
                 //Debug.Log("D pressed");
             }
 
