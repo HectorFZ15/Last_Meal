@@ -4495,6 +4495,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6689542755544973585, guid: 685bc42c613da264fa3fb4ee2dca2131, type: 3}
+      propertyPath: godMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 1857bbd7e8c7dde4a8445853ae2b17d6, type: 3}
+    - target: {fileID: 6689542755544973585, guid: 685bc42c613da264fa3fb4ee2dca2131, type: 3}
       propertyPath: devilMusic
       value: 
       objectReference: {fileID: 8300000, guid: 503903f4ce490ac4483f4dfe6c1383dd, type: 3}
@@ -4502,6 +4506,10 @@ PrefabInstance:
       propertyPath: entradaMal
       value: 
       objectReference: {fileID: 8300000, guid: 1fea343bb4b95d447b74c4702f2043ca, type: 3}
+    - target: {fileID: 6689542755544973585, guid: 685bc42c613da264fa3fb4ee2dca2131, type: 3}
+      propertyPath: musicMenu2
+      value: 
+      objectReference: {fileID: 8300000, guid: dab1cc5a1f9a92246806dfdc216b607c, type: 3}
     - target: {fileID: 6689542755544973585, guid: 685bc42c613da264fa3fb4ee2dca2131, type: 3}
       propertyPath: entradaBien
       value: 
