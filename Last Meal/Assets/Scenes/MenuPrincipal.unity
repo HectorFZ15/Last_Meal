@@ -4494,6 +4494,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6689542755544973585, guid: 685bc42c613da264fa3fb4ee2dca2131, type: 3}
+      propertyPath: devilMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 503903f4ce490ac4483f4dfe6c1383dd, type: 3}
+    - target: {fileID: 6689542755544973585, guid: 685bc42c613da264fa3fb4ee2dca2131, type: 3}
+      propertyPath: entradaMal
+      value: 
+      objectReference: {fileID: 8300000, guid: 1fea343bb4b95d447b74c4702f2043ca, type: 3}
+    - target: {fileID: 6689542755544973585, guid: 685bc42c613da264fa3fb4ee2dca2131, type: 3}
+      propertyPath: entradaBien
+      value: 
+      objectReference: {fileID: 8300000, guid: e45ced0b93fdf014e89b0715951f0963, type: 3}
+    - target: {fileID: 6689542755544973585, guid: 685bc42c613da264fa3fb4ee2dca2131, type: 3}
+      propertyPath: finalSonida
+      value: 
+      objectReference: {fileID: 8300000, guid: 75573df3be5e2c044aa79275dee5c421, type: 3}
+    - target: {fileID: 6689542755544973585, guid: 685bc42c613da264fa3fb4ee2dca2131, type: 3}
+      propertyPath: muerteLadron
+      value: 
+      objectReference: {fileID: 8300000, guid: f7db04b31abb9a24e84466021ca661fe, type: 3}
+    - target: {fileID: 6689542755544973585, guid: 685bc42c613da264fa3fb4ee2dca2131, type: 3}
+      propertyPath: muerteAldeano
+      value: 
+      objectReference: {fileID: 8300000, guid: 9b5ce4f83f6fd8147a7c41638f87184f, type: 3}
+    - target: {fileID: 6689542755544973585, guid: 685bc42c613da264fa3fb4ee2dca2131, type: 3}
+      propertyPath: empezarPartner
+      value: 
+      objectReference: {fileID: 8300000, guid: 60bceee206674a643a04e5ff918abcd4, type: 3}
+    - target: {fileID: 6689542755544973585, guid: 685bc42c613da264fa3fb4ee2dca2131, type: 3}
+      propertyPath: terminarPartner
+      value: 
+      objectReference: {fileID: 8300000, guid: 453b64b2cdfb3cc42880569bc356ed48, type: 3}
+    - target: {fileID: 6689542755544973585, guid: 685bc42c613da264fa3fb4ee2dca2131, type: 3}
+      propertyPath: contractedSalida
+      value: 
+      objectReference: {fileID: 8300000, guid: 4432db302ee625042b97dae52c5ade50, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

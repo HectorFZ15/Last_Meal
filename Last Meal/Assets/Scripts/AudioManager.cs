@@ -13,13 +13,12 @@ public class AudioManager : MonoBehaviour
     [Header("----------- Audio SFX -----------")]
     public AudioClip click; //Para cuando suene por ejemplo la muerte o cualquier otra cosa usar esto
     [Header("----------- Background Music -----------")]
-    public AudioClip musicMenu1;
     public AudioClip musicMenu2;
     public AudioClip godMusic;
     public AudioClip devilMusic;
 
     private bool isInMenu = false;
-    private AudioClip currentMenuClip;
+    private AudioClip currentMusic;
 
     public GameObject canvaMusic;
     public GameObject canvasScene;
@@ -46,6 +45,16 @@ public class AudioManager : MonoBehaviour
     public GameObject exitMenuButton;
     public GameObject returnUrButton;
     public GameObject returnDrButton;
+
+    public AudioClip contractedSalida;
+    public AudioClip empezarPartner;
+    public AudioClip terminarPartner;
+    public AudioClip entradaBien;
+    public AudioClip entradaMal;
+    public AudioClip finalSonida;
+    public AudioClip muerteLadron;
+    public AudioClip muerteAldeano;
+
 
     private void Awake()
     {
@@ -82,7 +91,7 @@ public class AudioManager : MonoBehaviour
     {
         if (isInMenu && !musicSource.isPlaying)
         {
-            AlternarMusicaMenu();
+            Rebobinar();
         }
     }
 
@@ -93,7 +102,14 @@ public class AudioManager : MonoBehaviour
         canvasScene.SetActive(!canvasScene.activeSelf);
         if (!canvaMusic.activeSelf)
         {
-            EventSystem.current.SetSelectedGameObject(butonLocal);
+            if (SceneManager.GetActiveScene().name == "Ciudad")
+            {
+                EventSystem.current.SetSelectedGameObject(continueCityButton);
+            }
+            else
+            {
+                EventSystem.current.SetSelectedGameObject(butonLocal);
+            }
         }
         else
         {
@@ -165,20 +181,22 @@ public class AudioManager : MonoBehaviour
         if (sceneName == "MenuPrincipal")
         {
             isInMenu = true;
+            currentMusic = musicMenu2;
             // Elegir aleatoriamente entre las dos canciones del menú
-            currentMenuClip = Random.Range(0, 2) == 0 ? musicMenu1 : musicMenu2;
-            musicSource.clip = currentMenuClip;
+            musicSource.clip = currentMusic;
             musicSource.Play();
         }
         else  if (sceneName == "Ciudad")
         {
             if (GameManager.mood == false)
             {
-                musicSource.clip = godMusic;
+                currentMusic = godMusic;
+                musicSource.clip = currentMusic;
             }
             else
             {
-                musicSource.clip = devilMusic;
+                currentMusic = devilMusic;
+                musicSource.clip = currentMusic;
             }  
             musicSource.Play();
         }
@@ -189,16 +207,56 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    private void AlternarMusicaMenu()
+    private void Rebobinar()
     {
         // Cambia a la otra canción
-        currentMenuClip = (currentMenuClip == musicMenu1) ? musicMenu2 : musicMenu1;
-        musicSource.clip = currentMenuClip;
+        musicSource.clip = currentMusic;
         musicSource.Play();
     }
 
     public void PlaySFX(AudioClip clip)
     {
         SFXSource.PlayOneShot(clip);
+    }
+
+    //SFX rápido último dia por deberes
+    public void PlayFinalSFX()
+    {
+        SFXSource.PlayOneShot(finalSonida);
+    }
+
+    public void PlayContractedSalida()
+    {
+        SFXSource.PlayOneShot(contractedSalida);
+    }
+
+    public void PlayEmpezarPartner()
+    {
+        SFXSource.PlayOneShot(empezarPartner);
+    }
+
+    public void PlayTerminarPartner()
+    {
+        SFXSource.PlayOneShot(terminarPartner);
+    }
+
+    public void PlayEntradaBien()
+    {
+        SFXSource.PlayOneShot(entradaBien);
+    }
+
+    public void PlayEntradaMal()
+    {
+        SFXSource.PlayOneShot(entradaMal);
+    }
+
+    public void PlayMuerteLadron()
+    {
+        SFXSource.PlayOneShot(muerteLadron);
+    }
+
+    public void PlayMuerteAldeano()
+    {
+        SFXSource.PlayOneShot(muerteAldeano);
     }
 }

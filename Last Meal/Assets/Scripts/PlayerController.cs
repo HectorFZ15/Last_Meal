@@ -33,12 +33,14 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveInput;
     private InputAction contractAction;
     private InputAction partnerAction;
+    private AudioManager audioManager;
     void Awake()
     {
         controls = GetComponent<PlayerInput>();
         moveAction = controls.actions["Move"];
         contractAction = controls.actions["Contracted"];
-        partnerAction = controls.actions["Partner"];          
+        partnerAction = controls.actions["Partner"];   
+        audioManager = GameObject.Find("MusicManager").GetComponent<AudioManager>();       
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -63,6 +65,7 @@ public class PlayerController : MonoBehaviour
            if (Input.GetKeyDown(KeyCode.Q) || contractAction.triggered)
             {
                 gameManager.ContracetHability();
+                audioManager.PlayContractedSalida();
             }
 
             if (Input.GetKeyDown(KeyCode.E) || partnerAction.triggered)
