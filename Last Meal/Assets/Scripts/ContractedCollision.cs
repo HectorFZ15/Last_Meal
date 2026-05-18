@@ -31,6 +31,10 @@ public class ContractedCollision : MonoBehaviour
         //animator = GetComponent<Animator>();
         triggerCollider.isTrigger = false;
         triggerCollider.size = triggerSize;
+        if (transform.position.x < 0f)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
     }
 
     void Update()

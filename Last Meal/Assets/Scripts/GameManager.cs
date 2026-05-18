@@ -236,6 +236,7 @@ public class GameManager : MonoBehaviour
                 partnerDuration -= Time.deltaTime;
                 if (partnerDuration <= 0)
                 {
+                    audioManager.PlayTerminarPartner();
                     isPartnerActive = false;
                     partnerDuration = 10f;
                     playerController.triggerCollider.isTrigger = false;
@@ -277,6 +278,7 @@ public class GameManager : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Villager"))
             {
+                audioManager.PlayEntradaBien();
                 score += 5;
                 Destroy(collision.gameObject);
                 countVillagers++;
@@ -286,6 +288,7 @@ public class GameManager : MonoBehaviour
 
             if (collision.gameObject.CompareTag("Thief"))
             {
+                audioManager.PlayEntradaMal();
                 score -= 3;
                 Destroy(collision.gameObject);
                 countThievesEnter++;
@@ -297,6 +300,7 @@ public class GameManager : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Thief"))
             {
+                audioManager.PlayEntradaBien();
                 score += 5;
                 Destroy(collision.gameObject);
                 countThieves++;
@@ -306,6 +310,7 @@ public class GameManager : MonoBehaviour
 
             if (collision.gameObject.CompareTag("Villager"))
             {
+                audioManager.PlayEntradaMal();
                 score -= 3;
                 Destroy(collision.gameObject);
                 countVillagersEnter++;
@@ -321,6 +326,7 @@ public class GameManager : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Villager"))
             {
+                audioManager.PlayMuerteAldeano();
                 score -= 5;
                 NpcMovement npc = collision.gameObject.GetComponent<NpcMovement>();
                 npc.isStopped = true;
@@ -330,6 +336,7 @@ public class GameManager : MonoBehaviour
 
             if (collision.gameObject.CompareTag("Thief"))
             {
+                audioManager.PlayMuerteLadron();
                 score += 3;
                 NpcMovement npc = collision.gameObject.GetComponent<NpcMovement>();
                 npc.isStopped = true;
@@ -341,6 +348,7 @@ public class GameManager : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Thief"))
             {
+                audioManager.PlayMuerteAldeano();
                 score -= 5;
                 NpcMovement npc = collision.gameObject.GetComponent<NpcMovement>();
                 npc.isStopped = true;
@@ -350,6 +358,7 @@ public class GameManager : MonoBehaviour
 
             if (collision.gameObject.CompareTag("Villager"))
             {
+                audioManager.PlayMuerteLadron();
                 score += 3;
                 NpcMovement npc = collision.gameObject.GetComponent<NpcMovement>();
                 npc.isStopped = true;
@@ -403,6 +412,7 @@ public class GameManager : MonoBehaviour
         {
             if (countVillagers >= 20)
             {
+                audioManager.PlayEmpezarPartner();
                 //Futuro, linea dejar en solo = 0, o dejarlo así
                 countVillagers -= 20;
                 isPartnerActive = true;
@@ -413,6 +423,7 @@ public class GameManager : MonoBehaviour
         {
             if (countThieves >= 20)
             {
+                audioManager.PlayEmpezarPartner();
                 //Futuro, linea dejar en solo = 0, o dejarlo así
                 countThieves -= 20;
                 isPartnerActive = true;
@@ -425,6 +436,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         //Quiero que si no se ha temrinado la animacion de muerte del jugador no mostrarlo.
+        audioManager.PlayFinalSFX();
         gameOverPanel.SetActive(true);
         scoreText.gameObject.SetActive(false);
         contractedPanel.SetActive(false);
